@@ -1,0 +1,28 @@
+<div class= "form-container">
+    <h1>Número de suerte</h1>
+    <form [formGroup]="calcularNumberForm" (ngSubmit)="onCalcularSuerte()" >
+        <input type="text" formControlName="numberNew"  placeholder="number"> 
+        <div class="alert alert-primary" *ngIf="!numberNew?.valid && (numberNew?.dirty || numberNew?.touched)" role="alert">            
+            <div class="alert alert-primary" *ngIf="numberNew?.errors?.required" role="alert">
+                El numero es requerido
+              </div>
+          <div class="alert alert-primary" *ngIf="!numberNew?.errors?.maxLength" role="alert">
+            El numero no puede ser mayor a 16 
+          </div>
+          <div class="alert alert-primary" *ngIf="!numberNew?.errors?.minLength" role="alert">
+            El numero no puede ser mayor a 14 
+          </div>
+          <div class="alert alert-primary" *ngIf="numberNew?.errors?.pattern" role="alert">
+            se permite solo números  
+          </div>
+        </div>
+        <div>
+            <button type="submit" class="btn"
+            [disabled]= "!calcularNumberForm.valid" > CALCULAR NÚMERO DE LA SUERTE </button>
+        </div> 
+        <div>
+            <label>número de la suerte {{numeroGanador}}</label>
+        </div>
+    </form>  
+    
+</div>
